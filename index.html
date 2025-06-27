@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizel's Goose Recipes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .recipe-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .recipe-description {
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .recipe-body {
+            padding: 20px;
+        }
+
+        .activities {
+            margin-bottom: 20px;
+        }
+
+        .activities h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .activities ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .activities li {
+            background: #f8f9fa;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border-left: 3px solid #4facfe;
+        }
+
+        .recipe-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .format-toggle {
+            display: flex;
+            gap: 5px;
+        }
+
+        .format-toggle button {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            display: none;
+        }
+
+        .code-block.active {
+            display: block;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .expand-section {
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .goose-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="goose-icon">🪿</span>Rizel's Goose Recipes</h1>
+        
+        <div class="recipes-grid">
+            <div class="recipe-card">
+                <div class="recipe-header">
+                    <div class="recipe-title">Log Completed PRs</div>
+                    <div class="recipe-description">
+                        Add PRs that I've merged, but forgot to log to our GitHub board under the DONE column
+                    </div>
+                </div>
+                
+                <div class="recipe-body">
+                    <div class="activities">
+                        <h3>Activities:</h3>
+                        <ul>
+                            <li>Fetch merged PRs by date range</li>
+                            <li>Cross-reference project board items</li>
+                            <li>Create missing tracking issues</li>
+                            <li>Generate activity summaries</li>
+                            <li>Update project board status</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recipe-actions">
+                        <a href="goose://recipe?config=eyJpZCI6InVudGl0bGVkIiwibmFtZSI6IlVudGl0bGVkIFJlY2lwZSIsImRlc2NyaXB0aW9uIjoiQWRkIFBScyB0aGF0IEkndmUgbWVyZ2VkLCBidXQgZm9yZ290IHRvIGxvZyB0byBvdXIgR2l0SHViIGJvYXJkIHVuZGVyIHRoZSBET05FIGNvbHVtbiIsImluc3RydWN0aW9ucyI6IkFuYWx5emUgR2l0SHViIHJlcG9zaXRvcmllcyBhbmQgcHJvamVjdCBtYW5hZ2VtZW50IGJvYXJkcyB0byBwcm92aWRlIGNvbXByZWhlbnNpdmUgcmVwb3J0cyBvbiBkZXZlbG9wbWVudCBhY3Rpdml0eSwgcHVsbCByZXF1ZXN0cywgYW5kIGlzc3VlIHRyYWNraW5nLiBVc2UgR2l0SHViIENMSSAoZ2gpIHRvIGZldGNoIGRhdGEgZnJvbSBtdWx0aXBsZSByZXBvc2l0b3JpZXMsIGNyb3NzLXJlZmVyZW5jZSBQUnMgd2l0aCBwcm9qZWN0IGJvYXJkIGl0ZW1zLCBhbmQgaWRlbnRpZnkgZ2FwcyBpbiB0cmFja2luZy4gV2hlbiBkaXNjcmVwYW5jaWVzIGFyZSBmb3VuZCBiZXR3ZWVuIGNvbXBsZXRlZCB3b3JrIGFuZCBwcm9qZWN0IHRyYWNraW5nLCBjcmVhdGUgbmV3IEdpdEh1YiBpc3N1ZXMgdG8gcHJvcGVybHkgZG9jdW1lbnQgdGhlIHdvcmssIGFzc2lnbiB0aGVtIGFwcHJvcHJpYXRlbHksIGNsb3NlIHRoZW0gYXMgY29tcGxldGVkLCBhbmQgYWRkIHRoZW0gdG8gdGhlIHJlbGV2YW50IHByb2plY3QgYm9hcmQuIEZvY3VzIG9uIHByb3ZpZGluZyBkZXRhaWxlZCBzdW1tYXJpZXMgd2l0aCBkYXRlcywgUFIgbnVtYmVycywgYW5kIGNsZWFyIGNhdGVnb3JpemF0aW9uIG9mIHdvcmsgdGhlbWVzLiIsImFjdGl2aXRpZXMiOlsiRmV0Y2ggbWVyZ2VkIFBScyBieSBkYXRlIHJhbmdlIiwiQ3Jvc3MtcmVmZXJlbmNlIHByb2plY3QgYm9hcmQgaXRlbXMiLCJDcmVhdGUgbWlzc2luZyB0cmFja2luZyBpc3N1ZXMiLCJHZW5lcmF0ZSBhY3Rpdml0eSBzdW1tYXJpZXMiLCJVcGRhdGUgcHJvamVjdCBib2FyZCBzdGF0dXMiXSwicHJvbXB0IjoiU2VhcmNoIGZvciBteSBtZXJnZWQgUFJzIHdpdGhpbiB0aGUgbGFzdCB3ZWVrIGluIGdpdGh1Yi5jb20vYmxvY2svZ29vc2UgYW5kIGFkZCB0aGVtIGluIHRoZSBkb25lIGNvbHVtbiB0byB0aGlzIHByb2plY3QgYm9hcmQgaHR0cHM6Ly9naXRodWIuY29tL29yZ3Mvc3F1YXJldXAvcHJvamVjdHMvMzMzIHVuZGVyIG15IG5hbWUuIiwidGl0bGUiOiJMb2cgQ29tcGxldGVkIFBScyIsImV4dGVuc2lvbnMiOltdfQ==" class="btn btn-primary">
+                            🚀 Launch Recipe
+                        </a>
+                    </div>
+                    
+                    <div class="expand-section">
+                        <div class="format-toggle">
+                            <button class="btn btn-secondary" onclick="toggleFormat(this, 'yaml', 0)">View YAML</button>
+                            <button class="btn btn-secondary" onclick="toggleFormat(this, 'json', 0)">View JSON</button>
+                        </div>
+                        
+                        <div class="code-block" id="yaml-0">
+                            <pre>version: 1.0.0
+description: |
+    Add PRs that I've merged, but forgot to log to our GitHub board under the DONE column
+instructions: Analyze GitHub repositories and project management boards to provide comprehensive reports on development activity, pull requests, and issue tracking. Use GitHub CLI (gh) to fetch data from multiple repositories, cross-reference PRs with project board items, and identify gaps in tracking. When discrepancies are found between completed work and project tracking, create new GitHub issues to properly document the work, assign them appropriately, close them as completed, and add them to the relevant project board. Focus on providing detailed summaries with dates, PR numbers, and clear categorization of work themes.
+activities:
+  - Fetch merged PRs by date range
+  - Cross-reference project board items
+  - Create missing tracking issues
+  - Generate activity summaries
+  - Update project board status
+prompt: 
+title: Log Completed PRs
+extensions: []</pre>
+                        </div>
+                        
+                        <div class="code-block" id="json-0">
+                            <pre>{
+  "id": "untitled",
+  "name": "Untitled Recipe",
+  "description": "Add PRs that I've merged, but forgot to log to our GitHub board under the DONE column",
+  "instructions": "Analyze GitHub repositories and project management boards to provide comprehensive reports on development activity, pull requests, and issue tracking. Use GitHub CLI (gh) to fetch data from multiple repositories, cross-reference PRs with project board items, and identify gaps in tracking. When discrepancies are found between completed work and project tracking, create new GitHub issues to properly document the work, assign them appropriately, close them as completed, and add them to the relevant project board. Focus on providing detailed summaries with dates, PR numbers, and clear categorization of work themes.",
+  "activities": [
+    "Fetch merged PRs by date range",
+    "Cross-reference project board items",
+    "Create missing tracking issues",
+    "Generate activity summaries",
+    "Update project board status"
+  ],
+  "prompt": "",
+  "title": "Log Completed PRs",
+  "extensions": []
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Placeholder for additional recipes -->
+            <div class="recipe-card" style="border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; min-height: 300px; opacity: 0.7;">
+                <div style="text-align: center; color: #666;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">➕</div>
+                    <div style="font-size: 1.2rem;">Add More Recipes</div>
+                    <div style="font-size: 0.9rem; margin-top: 5px;">Your future Goose recipes will appear here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFormat(button, format, recipeIndex) {
+            // Hide all code blocks for this recipe
+            const yamlBlock = document.getElementById(`yaml-${recipeIndex}`);
+            const jsonBlock = document.getElementById(`json-${recipeIndex}`);
+            
+            yamlBlock.classList.remove('active');
+            jsonBlock.classList.remove('active');
+            
+            // Reset all buttons in this recipe
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.style.background = '#6c757d';
+            });
+            
+            // Show selected format
+            if (format === 'yaml') {
+                yamlBlock.classList.add('active');
+                button.style.background = '#28a745';
+            } else if (format === 'json') {
+                jsonBlock.classList.add('active');
+                button.style.background = '#28a745';
+            }
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.recipe-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
